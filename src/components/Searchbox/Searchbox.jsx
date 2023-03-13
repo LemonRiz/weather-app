@@ -9,6 +9,7 @@ const Searchbox = ({ label, searchTerm, handleInput }) => {
       value={searchTerm}
       onInput={handleInput}
       className="nav__searchbox"
+      placeholder="Enter your location"
     />
   );
 };
