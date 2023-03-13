@@ -4,19 +4,24 @@ import "./index.css";
 import Main from "./containers/Main/Main";
 
 function App() {
-  const [location, setLocation] = useState("");
-  const [data, setData] = useState({});
+  const [location, setLocation] = useState("London");
+  const [data, setData] = useState([]);
 
   const fetchWeather = async (location) => {
-    let url = `http://api.weatherapi.com/v1/current.json?key=60403eae3c4246bab07122409231003&q=${location}`;
+    let url = `http://api.weatherapi.com/v1/current.json?key=60403eae3c4246bab07122409231003&q=london`;
     const result = await fetch(url);
     const weatherData = await result.json();
-    setData(weatherData);
+    setData([weatherData]);
   };
 
   useEffect(() => {
-    fetchWeather();
+    fetchWeather(data);
   }, [location]);
+
+  const handleInput = (event) => {
+    const newLocation = event.target.value;
+    setLocation(newLocation);
+  };
 
   return (
     <>
